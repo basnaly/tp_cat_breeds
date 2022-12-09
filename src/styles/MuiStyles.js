@@ -22,7 +22,8 @@ export const TypographyStyled = styled(Typography)({
 export const CatNameStyled = styled("h2")({
 	backgroundColor: "steelblue",
 	color: 'chartreuse',
-	padding: '5px 0'
+	padding: '5px 0',
+	cursor: 'pointer', 
 });
 
 export const CarouselStyled = styled(Carousel)({
@@ -69,18 +70,34 @@ export const AccordionStyled = styled(Accordion.Header)({
 	color: '#0f87eb',
 	fontSize: '20px',
 	fontWeight: 'bold',
-	marginLeft: '10px'
+	marginLeft: '10px',
 	}
 });
 
+export const CatNameDialogStyled = styled('div')({
+	color: '#0f87eb',
+	fontSize: '24px',
+	fontWeight: 'bold',
+	textAlign: 'center',
+	textDecoration: 'underline',
+});
+
+export const OriginDialogStyled = styled('div')({
+	color: '#0f87eb',
+	fontSize: '20px',
+	fontWeight: 'bold',
+	textAlign: 'center',
+	//textDecoration: 'underline',
+});
 
 
-export const LightYellowButton = styled(Button)({
+export const CloseButton = styled(Button)({
 	textTransform: "none",
-	color: "yellow",
+	color: 'white', //'chartreuse',
 	border: "1px solid dimgray",
 	fontSize: "18px",
-	backgroundColor: "lightgray",
-	padding: "1px 5px",
+	fontWeight: 'bold',
+	backgroundColor: "#0f87eb",
+	padding: "3px 8px",
 });
 

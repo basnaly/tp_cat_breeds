@@ -69,3 +69,11 @@ export type CatsCarouselProps = {
 export type CatsListProps = {
     fetchCatsData: Cat[]
 }
+
+export type CatDialogProps = {
+	cat: Cat
+}
+
+export type CatTableProps = {
+	cat: Cat
+}

@@ -14,6 +14,17 @@ export const myTheme = createTheme({
                 } 
             }
         },
+        MuiTableCell: {
+            styleOverrides: {
+                head: {
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                },
+                body: {
+                    fontSize: '18px',
+                }
+            }
+        },
 
         // MuiMenuItem: {
         //     styleOverrides: {

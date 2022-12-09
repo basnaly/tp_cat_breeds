@@ -1341,7 +1341,13 @@
 		"rex": 0,
 		"suppressed_tail": 0,
 		"short_legs": 0,
-		"hypoallergenic": 0
+		"hypoallergenic": 0,
+		"image": {
+			"id": "_European-Burmese-bred-in-Russia1",
+			"width": 960,
+			"height": 810,
+			"url": "https://pictures-of-cats.org/wp-content/uploads/2021/06/European-Burmese-bred-in-Russia1.jpg"
+		}
 	},
 	{
 		"weight": { "imperial": "7 - 14", "metric": "3 - 6" },
@@ -1815,7 +1821,13 @@
 		"suppressed_tail": 0,
 		"short_legs": 0,
 		"wikipedia_url": "https://en.wikipedia.org/wiki/Asian_cat",
-		"hypoallergenic": 0
+		"hypoallergenic": 0,
+		"image": {
+			"id": "Asian-Cat-Breed",
+			"width": 1080,
+			"height": 1080,
+			"url": "https://www.purina.co.uk/sites/default/files/2022-06/Asian-Cat-Breed.jpg"
+		}
 	},
 	{
 		"weight": { "imperial": "7 - 13", "metric": "3 - 6" },
@@ -2118,7 +2130,12 @@
 		"wikipedia_url": "https://en.wikipedia.org/wiki/Persian_(cat)",
 		"hypoallergenic": 0,
 		"reference_image_id": "-Zfz5z2jK\n",
-		"image": {}
+		"image": {
+			"id": "White-Persian-cat-with-long-hair-1200x800",
+			"width": 800,
+			"height": 1200,
+			"url": "https://www.bubblypet.com/wp-content/uploads/2022/07/White-Persian-cat-with-long-hair-1200x800.jpg"
+		}
 	},
 	{
 		"weight": { "imperial": "8 - 17", "metric": "4 - 8" },

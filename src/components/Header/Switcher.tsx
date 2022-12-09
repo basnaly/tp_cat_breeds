@@ -1,22 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Switch from "@mui/material/Switch";
 import { FormGroup, Stack } from "@mui/material";
 import { TypographyStyled } from "../../styles/MuiStyles";
+import { AppContext } from "../AppContext";
 
 export default function Switcher() {
 
-	const [checked, setChecked] = useState(true);
+	const {setSwitcherChecked, switcherChecked} = useContext(AppContext)
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setChecked(event.target.checked);
+		setSwitcherChecked(event.target.checked);
 	};
 
 	return (
 		<FormGroup className="me-5">
 			<Stack direction="row" spacing={1} alignItems="center">
-				<TypographyStyled>Off</TypographyStyled>
+				<TypographyStyled>Cats List</TypographyStyled>
 				<Switch 
-					checked={checked}
+					checked={switcherChecked}
 					onChange={handleChange}
 					inputProps={{ "aria-label": "controlled" }}
 				/>

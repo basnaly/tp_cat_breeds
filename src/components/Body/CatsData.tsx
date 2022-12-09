@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useEffect, useReducer } from "react";
+import { useContext, useEffect, useReducer } from "react";
 import { ReducerState, ReducerAction } from "../../utils/Types";
+import { AppContext } from "../AppContext";
 import CatsCarousel from "./CatsCarousel";
 import CatsList from "./CatsList";
 
@@ -33,6 +34,8 @@ const CatsData = () => {
 	
 	const [state, dispatch] = useReducer(reducer, initialState);
 
+	const { setSwitcherChecked, switcherChecked } = useContext(AppContext);
+
 	useEffect(() => {
 		axios
 			.get("http://localhost:4051/cat_breeds")
@@ -51,9 +54,12 @@ const CatsData = () => {
 
 	return (
 		<>
-            <CatsCarousel fetchCatsData={state.catsData}/>
-            <CatsList fetchCatsData={state.catsData}/>
-        </>
+			{switcherChecked ? (
+				<CatsCarousel fetchCatsData={state.catsData} />
+			) : (
+				<CatsList fetchCatsData={state.catsData} />
+			)}
+		</>
 	);
 };
 

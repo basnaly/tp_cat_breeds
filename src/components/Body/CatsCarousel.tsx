@@ -1,8 +1,7 @@
-import axios from "axios";
-import React, { useEffect } from "react";
 import Carousel from "react-bootstrap/Carousel";
-import { ArrowStyled, CarouselStyled, CatNameStyled, ImgStyled } from "../../styles/MuiStyles";
+import { ArrowStyled, CarouselStyled, ImgStyled } from "../../styles/MuiStyles";
 import { CatsCarouselProps } from '../../utils/Types'
+import CatDialog from "./CatDialog";
 
 const CatsCarousel = (props: CatsCarouselProps ) => {
 
@@ -12,14 +11,14 @@ const CatsCarousel = (props: CatsCarouselProps ) => {
 			prevIcon={<ArrowStyled>←</ArrowStyled>}
 		>
 			{props.fetchCatsData.map((el) => (
-				<Carousel.Item>
+				<Carousel.Item key={el.id}>
 					<ImgStyled
 						className="d-block mx-auto"
 						src={el?.image?.url}
 						alt={el.name}
 					/>
 					<Carousel.Caption>
-						<CatNameStyled>The {el.name} cat.</CatNameStyled>
+						<CatDialog cat={el} />
 					</Carousel.Caption>
 				</Carousel.Item>
 			))}

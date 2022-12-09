@@ -37,13 +37,3 @@ const CatsList = (props: CatsListProps) => {
 }
 
 export default CatsList
-
-{/* <div>{el.name}</div>
-					<div>{el?.image?.url}</div>
-					<div>Description: {el?.description}</div>
-					<div>Temperament: {el?.temperament}</div>
-					<div>Origin: {el?.origin}</div>
-					<div>Weight: {el?.weight?.imperial} - {el?.weight?.metric}</div>
-					<div>Life_span: {el?.life_span}</div>
-					<div>Adaptability: {el?.adaptability}</div> */}
-					
