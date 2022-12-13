@@ -1,10 +1,11 @@
-import { styled, Button, Typography } from "@mui/material";
+import { styled, Button, Typography, DialogTitle } from "@mui/material";
 import { Carousel, Accordion } from "react-bootstrap";
 
 export const MainStyled = styled("div")({
-	// fontFamily: "'Spinnaker', sans-serif",
-	// fontSize: "30px",
-	// backgroundColor: "gray",
+	display: 'flex',
+    flexDirection: 'column',
+    overflow: 'auto',
+    height: '100vh',
 });
 
 export const HeaderTitleStyled = styled("div")({
@@ -42,7 +43,8 @@ export const CarouselStyled = styled(Carousel)({
 
 export const ImgStyled = styled('img')({
 	maxHeight: "calc(100vh - 172px)",
-	overflow: 'hidden'
+	overflow: 'hidden',
+	maxWidth: '100%',
 });
 
 export const ArrowStyled = styled('div')({
@@ -101,3 +103,31 @@ export const CloseButton = styled(Button)({
 	padding: "3px 8px",
 });
 
+export const FilterButton = styled(Button)({
+	textTransform: "none",
+	color: 'steelblue', 
+	border: "1px solid dimgray",
+	fontSize: "18px",
+	fontWeight: 'bold',
+	backgroundColor: "chartreuse",
+	padding: "3px 8px",
+	'&:hover': {
+		backgroundColor: "white",
+	}
+});
+
+export const DialogTitleStyled = styled(DialogTitle)({
+	fontSize: '24px',
+	// color: '#0f87eb',
+	// textAlign: 'center',
+	// stextDecoration: 'underline',
+});
+
+export const FiterStyled = styled('div')({
+	color: '#0f87eb',
+	fontSize: '28px',
+	fontWeight: 'bold',
+	textAlign: 'center',
+	margin: '20px',
+	// textShadow: '1px 1px chartreuse',
+});

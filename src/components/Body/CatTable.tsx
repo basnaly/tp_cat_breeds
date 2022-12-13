@@ -28,12 +28,12 @@ const CatTable = (props: CatTableProps) => {
 							"&:last-child td, &:last-child th": { border: 0 },
 						}}
 					>
-						<TableCell component="th" scope="row" className={cellClass.end}>Weight, "imperial"</TableCell>
+						<TableCell component="th" scope="row" className={cellClass.end}>Weight, imperial</TableCell>
 						<TableCell align="center">{props.cat?.weight?.imperial} pounds</TableCell>
 					</TableRow>
 
 					<TableRow>
-						<TableCell className={cellClass.end}>Weight, "metric"</TableCell>
+						<TableCell className={cellClass.end}>Weight, metric</TableCell>
 						<TableCell align="center">{props.cat?.weight?.metric} kg</TableCell>
 					</TableRow>
 

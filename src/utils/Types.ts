@@ -44,17 +44,27 @@ export type Cat = {
 	};
 };
 
+export type OriginOptions = {
+	origin: string
+}
+
 export type ReducerState = {
 	isLoading: boolean;
 	error: string;
 	catsData: Cat[];
+	originOptions: string[]
 };
 
-export type ReducerAction = SuccessAction | ErrorAction;
+export type ReducerAction = SuccessAction | SuccessOriginAction | ErrorAction;
 
 export type SuccessAction = {
 	type: "FETCH_SUCCESS";
 	payload: Cat[];
+};
+
+export type SuccessOriginAction = {
+	type: "FETCH_ORIGIN";
+	payload: OriginOptions[];
 };
 
 export type ErrorAction = {

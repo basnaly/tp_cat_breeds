@@ -25,16 +25,6 @@ export const myTheme = createTheme({
                 }
             }
         },
-
-        // MuiMenuItem: {
-        //     styleOverrides: {
-        //         root: {
-        //             fontSize: '18px',
-        //             backgroundColor: 'lightgray',
-        //             border: '1px solid lightskyblue',      
-        //         }
-        //     }
-        // },
         MuiInputLabel: {
             styleOverrides: {
                 root: {
@@ -67,13 +57,6 @@ export const myTheme = createTheme({
             styleOverrides: {
                 input: {
                     fontSize: "20px",
-                }
-            }
-        },
-        MuiSelect: {
-            styleOverrides: {
-                outlined: {
-                    padding: "5px 10px",
                 }
             }
         },

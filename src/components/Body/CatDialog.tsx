@@ -6,9 +6,15 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
-import { CatNameDialogStyled, CatNameStyled, CloseButton, OriginDialogStyled } from "../../styles/MuiStyles";
+import {
+	CatNameDialogStyled,
+	CatNameStyled,
+	CloseButton,
+	OriginDialogStyled,
+} from "../../styles/MuiStyles";
 import { CatDialogProps } from "../../utils/Types";
 import CatTable from "./CatTable";
+import { AppContext } from "../AppContext";
 
 const Transition = React.forwardRef(function Transition(
 	props: TransitionProps & {
@@ -22,6 +28,9 @@ const Transition = React.forwardRef(function Transition(
 const CatDialog = (props: CatDialogProps) => {
 	const [open, setOpen] = React.useState(false);
 
+	const { setSwitcherChecked, switcherChecked } =
+		React.useContext(AppContext);
+
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
@@ -31,11 +40,20 @@ const CatDialog = (props: CatDialogProps) => {
 	};
 
 	return (
-		<div>
-			<CatNameStyled onClick={handleClickOpen}>
-				The {props.cat.name} cat.
-				<span className="ms-3">🙋🏻‍♂️</span>
-			</CatNameStyled>
+		<div className="d-flex justify-content-center"> 
+			{switcherChecked ? (
+				<CatNameStyled onClick={handleClickOpen}>
+					The {props.cat.name} cat.
+					<span className="ms-3">🙋🏻‍♂️</span>
+				</CatNameStyled>
+			) : (
+				<CloseButton onClick={handleClickOpen}
+					className="my-3 mx-auto"
+				>
+					More details
+					<span className="ms-3">🙋🏻‍♂️</span>
+				</CloseButton>
+			)}
 
 			<Dialog
 				open={open}
@@ -45,27 +63,27 @@ const CatDialog = (props: CatDialogProps) => {
 				aria-describedby="alert-dialog-slide-description"
 			>
 				<DialogTitle className="d-flex flex-column align-items-center">
-                    <a href={props.cat?.wikipedia_url} target='_blank'>
-                        <CatNameDialogStyled>{props.cat?.name} cat</CatNameDialogStyled>
-                    </a>
+					<a href={props.cat?.wikipedia_url} target="_blank">
+						<CatNameDialogStyled>
+							{props.cat?.name} cat
+						</CatNameDialogStyled>
+					</a>
 
-                    <OriginDialogStyled>origin: {props.cat?.origin}</OriginDialogStyled>
-                </DialogTitle>
+					<OriginDialogStyled>
+						origin: {props.cat?.origin}
+					</OriginDialogStyled>
+				</DialogTitle>
 
 				<DialogContent>
 					<DialogContentText id="alert-dialog-slide-description">
-						
-                        <CatTable cat={props.cat} />
-
+						<CatTable cat={props.cat} />
 					</DialogContentText>
 				</DialogContent>
 
 				<DialogActions>
-					<CloseButton onClick={handleClose}
-                        className='mx-auto my-2'
-                    >
-                        Close
-                    </CloseButton>
+					<CloseButton onClick={handleClose}>
+						Close
+					</CloseButton>
 				</DialogActions>
 			</Dialog>
 		</div>
@@ -73,4 +91,3 @@ const CatDialog = (props: CatDialogProps) => {
 };
 
 export default CatDialog;
-

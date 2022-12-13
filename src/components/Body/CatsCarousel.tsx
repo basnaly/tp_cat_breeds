@@ -22,6 +22,7 @@ const CatsCarousel = (props: CatsCarouselProps ) => {
 					</Carousel.Caption>
 				</Carousel.Item>
 			))}
+			
 		</CarouselStyled>
 	);
 };

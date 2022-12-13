@@ -1,14 +1,15 @@
 import { Accordion } from 'react-bootstrap'
 import { AccordionStyled, DescriptionSpanStyled, DescriptionStyled, ImgStyled } from '../../styles/MuiStyles'
 import { CatsListProps } from '../../utils/Types'
+import CatDialog from './CatDialog'
 
 const CatsList = (props: CatsListProps) => {
 
   return (
-    <Accordion defaultActiveKey={['0']} alwaysOpen>
+    <Accordion className='overflow-auto'>
 		{
 			props.fetchCatsData.map((el, i) => (
-				<Accordion.Item eventKey="0" 
+				<Accordion.Item eventKey={el.id} 
 					key={el.id}
 					className='d-flex flex-column align-items-center'
 				>
@@ -26,7 +27,10 @@ const CatsList = (props: CatsListProps) => {
 						<DescriptionStyled>Temperament: 
 							<DescriptionSpanStyled>{el?.temperament}</DescriptionSpanStyled>
 						</DescriptionStyled>
-					</Accordion.Body>
+
+						<CatDialog cat={el} />
+
+					</Accordion.Body>	
 				
 				</Accordion.Item>
 			))
