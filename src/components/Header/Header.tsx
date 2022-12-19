@@ -1,4 +1,5 @@
 import { HeaderTitleStyled } from "../../styles/MuiStyles";
+import CatOfDay from "./CatOfDay";
 import FilterDialog from "./FilterDialog";
 import Switcher from "./Switcher";
 
@@ -14,6 +15,8 @@ export const Header = () => {
 			</div>
 
 			<FilterDialog />
+
+			<CatOfDay />
 
 			<Switcher />
 		

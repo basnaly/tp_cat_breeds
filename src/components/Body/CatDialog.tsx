@@ -26,6 +26,7 @@ const Transition = React.forwardRef(function Transition(
 });
 
 const CatDialog = (props: CatDialogProps) => {
+	
 	const [open, setOpen] = React.useState(false);
 
 	const { setSwitcherChecked, switcherChecked } =
@@ -75,7 +76,7 @@ const CatDialog = (props: CatDialogProps) => {
 				</DialogTitle>
 
 				<DialogContent>
-					<DialogContentText id="alert-dialog-slide-description">
+					<DialogContentText component="div" id="alert-dialog-slide-description"> 
 						<CatTable cat={props.cat} />
 					</DialogContentText>
 				</DialogContent>

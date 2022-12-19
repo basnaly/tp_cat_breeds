@@ -52,8 +52,7 @@ export const ArrowStyled = styled('div')({
 });
 
 export const DescriptionStyled = styled('div')({
-	// backgroundColor: "steelblue",
-	// color: 'chartreuse',
+
 	color: '#0f87eb',
 	fontSize: '20px',
 	fontWeight: 'bold',
@@ -89,7 +88,6 @@ export const OriginDialogStyled = styled('div')({
 	fontSize: '20px',
 	fontWeight: 'bold',
 	textAlign: 'center',
-	//textDecoration: 'underline',
 });
 
 
@@ -118,9 +116,6 @@ export const FilterButton = styled(Button)({
 
 export const DialogTitleStyled = styled(DialogTitle)({
 	fontSize: '24px',
-	// color: '#0f87eb',
-	// textAlign: 'center',
-	// stextDecoration: 'underline',
 });
 
 export const FiterStyled = styled('div')({
@@ -129,5 +124,51 @@ export const FiterStyled = styled('div')({
 	fontWeight: 'bold',
 	textAlign: 'center',
 	margin: '20px',
-	// textShadow: '1px 1px chartreuse',
+});
+
+export const CatButton = styled(Button)({
+	textTransform: "none",
+	color: 'red', 
+	border: "1px solid dimgray",
+	fontSize: "18px",
+	fontWeight: 'bold',
+	backgroundColor: "chartreuse",
+	padding: "3px 8px",
+	'&:hover': {
+		backgroundColor: "white",
+	}
+});
+
+export const TodaySpanStyled = styled('span')({
+	color: '#0f87eb',
+	fontSize: '24px',
+	fontWeight: 'bold',
+	paddingLeft: '10px',
+});
+
+export const DialogTitleResultStyled = styled(DialogTitle)({
+	fontSize: '20px',
+	fontWeight: 'bold',
+	textAlign: 'center',
+});
+
+export const CatSpanStyled = styled('span')({
+	color: 'red',
+	fontSize: '24px',
+	fontWeight: 'bold',
+	paddingLeft: '10px',
+});
+
+export const TitleResultStyled = styled('div')({
+	fontSize: '20px',
+	fontWeight: 'bold',
+	textAlign: 'center',
+	marginBottom: '20px',
+});
+
+export const ImgDialogStyled = styled('img')({
+	maxHeight: '400px',
+	overflow: 'hidden',
+	maxWidth: '100%',
+	margin: 'auto',
 });

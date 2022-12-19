@@ -1,5 +1,6 @@
 export type Cat = {
 	weight: { imperial: string; metric: string };
+	weight_metric: { max: number, min: number };
 	id: string;
 	name: string;
 	cfa_url: string;
@@ -10,7 +11,7 @@ export type Cat = {
 	country_codes: string;
 	country_code: string;
 	description: string;
-	life_span: string;
+	life_span: { max: number; min: number };
 	indoor: number;
 	lap: number;
 	alt_names: string;
@@ -44,27 +45,28 @@ export type Cat = {
 	};
 };
 
-export type OriginOptions = {
-	origin: string
-}
-
 export type ReducerState = {
 	isLoading: boolean;
 	error: string;
 	catsData: Cat[];
-	originOptions: string[]
+	unfilteredData: Cat[]
 };
 
-export type ReducerAction = SuccessAction | SuccessOriginAction | ErrorAction;
+export type ReducerAction = IsLoadingAction | SuccessAction | SuccessUnfilteredDataAction | ErrorAction;
+
+export type IsLoadingAction = {
+	type: "IS_LOADING";
+	payload: boolean;
+};
 
 export type SuccessAction = {
 	type: "FETCH_SUCCESS";
 	payload: Cat[];
 };
 
-export type SuccessOriginAction = {
-	type: "FETCH_ORIGIN";
-	payload: OriginOptions[];
+export type SuccessUnfilteredDataAction = {
+	type: "FETCH_UNFILTERED_DATA";
+	payload: Cat[];
 };
 
 export type ErrorAction = {

@@ -18,7 +18,7 @@ const initialState: ReducerState = {
 	isLoading: true,
 	error: "",
 	catsData: [],
-	originOptions: [],
+	unfilteredData: [],
 };
 
 export const AppContext = createContext<AppContextType>({
@@ -31,6 +31,11 @@ export const AppContext = createContext<AppContextType>({
 
 const reducer = (state: ReducerState, action: ReducerAction) => {
 	switch (action.type) {
+		case "IS_LOADING":
+			return {
+				...state,
+				isLoading: true,
+			};
 		case "FETCH_SUCCESS":
 			return {
 				...state,
@@ -38,17 +43,17 @@ const reducer = (state: ReducerState, action: ReducerAction) => {
 				catsData: action.payload,
 				error: "",
 			};
-		case "FETCH_ORIGIN":
+		case "FETCH_UNFILTERED_DATA":
 			return {
 				...state,
-				originOptions: action.payload?.map(el => el.origin),
+				unfilteredData: action.payload,
 			};
 		case "FETCH_ERROR":
 			return {
 				isLoading: false,
 				catsData: [],
 				error: action.payload,
-				originOptions: []
+				unfilteredData: []
 			};
 		default:
 			return state;
@@ -59,7 +64,7 @@ export const AppContextProvider = ({ children}: AppContextProviderProps ) => {
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const [switcherChecked, setSwitcherChecked] = useState<boolean>(true);
+    const [switcherChecked, setSwitcherChecked] = useState<boolean>(false);
 
 	const [query, setQuery] = useState<string>('')
 
@@ -68,9 +73,9 @@ export const AppContextProvider = ({ children}: AppContextProviderProps ) => {
 		axios
 			.get("http://localhost:4051/cat_breeds" + query, )
 			.then((response) => {
-				console.log(response.data);
+				// console.log(response.data);
 				if (!query) {
-					dispatch({ type: "FETCH_ORIGIN", payload: response.data });
+					dispatch({ type: "FETCH_UNFILTERED_DATA", payload: response.data });
 				}
 				dispatch({ type: "FETCH_SUCCESS", payload: response.data });
 			})
@@ -82,8 +87,6 @@ export const AppContextProvider = ({ children}: AppContextProviderProps ) => {
 				});
 			});
 	}, [query]);
-
-	console.log(state.catsData)
 	
     return (
         <AppContext.Provider value={{ switcherChecked, setSwitcherChecked, state, query, setQuery }}>

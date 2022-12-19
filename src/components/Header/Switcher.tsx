@@ -15,13 +15,13 @@ export default function Switcher() {
 	return (
 		<FormGroup className="me-5">
 			<Stack direction="row" spacing={1} alignItems="center">
-				<TypographyStyled>Cats List</TypographyStyled>
+				<TypographyStyled>List</TypographyStyled>
 				<Switch 
 					checked={switcherChecked}
 					onChange={handleChange}
 					inputProps={{ "aria-label": "controlled" }}
 				/>
-				<TypographyStyled>Cats Carousel</TypographyStyled>
+				<TypographyStyled>Carousel</TypographyStyled>
 			</Stack>
 		</FormGroup>
 	);

@@ -14,6 +14,7 @@ import {
 import { TransitionProps } from "@mui/material/transitions";
 
 import { FILTERABLE_CATS_PROPERTIES } from "../../utils/constants";
+import { Cat } from "../../utils/Types";
 
 const Transition = React.forwardRef(function Transition(
 	props: TransitionProps & {
@@ -25,32 +26,37 @@ const Transition = React.forwardRef(function Transition(
 });
 
 const FilterDialog = () => {
-	const {
-		setSwitcherChecked,
-		switcherChecked,
-		state,
-		query,
-		setQuery,
-	} = useContext(AppContext);
+	const { setSwitcherChecked, switcherChecked, state, query, setQuery } =
+		useContext(AppContext);
 
 	// const originRef: React.RefObject<HTMLInputElement> | null | undefined = createRef();
 
-	const [property, setProperty] = useState("");
+	const [property, setProperty] = useState<keyof Cat>("origin");
 	const [detail, setDetail] = useState("");
 
-	const valueOfProperty = FILTERABLE_CATS_PROPERTIES.find(
-		(el) => el.key === property
+	// const valueOfProperty = FILTERABLE_CATS_PROPERTIES.find(
+	// 	(el) => el.key === property
+	// );
+
+	let inputLabel = "";
+		if (property === "life_span") {
+			inputLabel = "Fill cat's life span";
+		} else if (property === "weight_metric") {
+			inputLabel = "Fill cat's weight";
+		} else {
+			inputLabel = "Detail's properties";
+		}
+
+	const detailOptions = state?.unfilteredData.map(
+		(el) => el?.[property] as string | number
 	);
 
-	const countries = state.originOptions.filter((el, index) => {
-		return state.originOptions.indexOf(el) === index
-	});
-
-	let options = valueOfProperty?.options
-
-	if (property === 'origin') {
-		options = countries.map(el => ({key: el, text: el}))
-	}
+	const options = detailOptions
+		.filter((el, index) => {
+			// remove duplicates
+			return detailOptions.indexOf(el) === index;
+		})
+		.sort();
 
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -63,10 +69,24 @@ const FilterDialog = () => {
 	};
 
 	const saveFilter = () => {
-		const query =`?${property}=${detail}`
+		let query = "";
+		if (property === "life_span") {
+			query = `?life_span.min_lte=${detail}&life_span.max_gte=${detail}`;
+		} else if (property === "weight_metric") {
+			query = `?weight_metric.min_lte=${detail}&weight_metric.max_gte=${detail}`;
+		} else {
+			query = `?${property}=${detail}`;
+		}
 		setQuery(query);
-		setProperty('')
-		setDetail('')
+		setSwitcherChecked(false);
+		setIsDialogOpen(false);
+	};
+
+	const removeFilter = () => {
+		const query = "";
+		setQuery(query);
+		setProperty("origin");
+		setDetail("");
 		setIsDialogOpen(false);
 	};
 
@@ -112,7 +132,10 @@ const FilterDialog = () => {
 						sx={{ width: "320px" }}
 						// inputRef={originRef}
 						value={property}
-						onChange={(e) => setProperty(e.target.value)}
+						onChange={(e) => {
+							setProperty(e.target.value as keyof Cat);
+							setDetail("");
+						}}
 					>
 						{FILTERABLE_CATS_PROPERTIES.map((el, index) => (
 							<MenuItem key={index} value={el.key}>
@@ -121,24 +144,29 @@ const FilterDialog = () => {
 						))}
 					</TextField>
 
-					{valueOfProperty && (
+					{detailOptions.length > 0 && (
 						<TextField
 							// autoFocus
 							className="mb-3"
-							select
+							select={ property !== "life_span" && property !== "weight_metric" }
 							margin="dense"
 							id="details"
-							label="Detail's properties"
-							type="text"
+							label={inputLabel} 
+							type={ (property !== "life_span" && property !== "weight_metric") 
+								? "text" : "number" }
 							variant="outlined"
 							sx={{ width: "320px" }}
 							// inputRef={originRef}
 							value={detail}
 							onChange={(e) => setDetail(e.target.value)}
 						>
-							{options?.map((el, index) => (
-								<MenuItem key={index} value={el.key}>
-									{el.text}
+							{options?.map((el, index, arr) => (
+								<MenuItem key={index} value={el}>
+									{options?.includes(0)
+										? (!!el).toString()
+										: typeof el === "number"
+										? "⭐️".repeat(el)
+										: el}
 								</MenuItem>
 							))}
 						</TextField>
@@ -151,8 +179,19 @@ const FilterDialog = () => {
 						data-testid="cancel-button-element"
 						variant={"outlined"}
 						className=" mx-3"
+						disabled={!property || detail === ""}
 					>
 						Save
+					</CloseButton>
+
+					<CloseButton
+						onClick={removeFilter}
+						data-testid="cancel-button-element"
+						variant={"outlined"}
+						className=" mx-3"
+						disabled={query === ""}
+					>
+						Remove filter
 					</CloseButton>
 
 					<CloseButton

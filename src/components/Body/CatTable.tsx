@@ -39,7 +39,7 @@ const CatTable = (props: CatTableProps) => {
 
 					<TableRow>
 						<TableCell className={cellClass.end}>Life span</TableCell>
-						<TableCell align="center">{props.cat?.life_span} years</TableCell>
+						<TableCell align="center">{props.cat?.life_span.min} - {props.cat?.life_span.max} years</TableCell>
 					</TableRow>
 
 					<TableRow>
